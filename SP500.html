@@ -271,7 +271,7 @@
                     .domain([d3.max(ebitda), 0])
                     .range([0, graphHeight]);
 
-                var popDomain = [d3.min(debt), d3.max(debt)];
+                var popDomain = [d3.min(assets), d3.max(assets)];
                 var popScale = d3.scale.sqrt()
                     .domain(popDomain)
                     .range([2, 18]);
