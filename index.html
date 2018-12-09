@@ -15,6 +15,12 @@
     <title>Last Liberal Art</title>
     <style>
 
+        body{
+            width: fit-content;
+
+            height: fit-content;
+        }
+
 
         a {
             color: #000000;
@@ -328,7 +334,7 @@
                 var yearLabel = svg.append('g')
                     .append('text')
                     .attr('class', 'yearlabel')
-                    .attr('transform', 'translate(750, 675)')
+                    .attr('transform', 'translate(750, 700)')
                     .attr('font-size', '100');
 
                 var bubblesHolder = svg.append("g");
@@ -361,8 +367,7 @@
                     yearLabel.text(year);
 
 
-                };
-
+                }
                 function setItemAttributes(d) {
                     d3.select(this).attr({
                         cx: xScale(d.InvestedCapital),
@@ -400,10 +405,10 @@
                                     +
                                     "<tr><td><b>Pre-Tax Profit Margin: </b></td><td>" + Math.round((d.PTI / d.Revenue) * 100) + "%</td></tr>"
                                     +
-                                    "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI / 1000) + " (Billion Dollars) </td></table>"))
+                                    "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI) / 1000 + " (Billion Dollars) </td></table>"))
 
                                     .style("top", svg.node().parentNode.offsetTop + 250 + "px")
-                                    .style("left", svg.node().parentNode.offsetLeft + 850 + "px");
+                                    .style("left", svg.node().parentNode.offsetLeft + 650 + "px");
                         })
                         .on("mouseout", function (d) {
                             div.transition()
@@ -411,9 +416,7 @@
                                 .style("opacity", 0)
                         });
 
-                };
-
-
+                }
                 var currentYear =  d3.select("#slide").on("input", function() {
                     render(+this.value);
                 });
@@ -434,7 +437,7 @@
                         }
                         return true;
                     }
-                }
+                };
 
                 d3.timer(callback(), interval);
 
@@ -457,7 +460,7 @@
                     });
             }
         }
-       
+
         bubblechart("software.csv")
     </script>
     <script>
