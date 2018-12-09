@@ -332,7 +332,7 @@
                 var yearLabel = svg.append('g')
                     .append('text')
                     .attr('class', 'yearlabel')
-                    .attr('transform', 'translate(750, 700)')
+                    .attr('transform', 'translate(1000, 700)')
                     .attr('font-size', '100');
 
                 var bubblesHolder = svg.append("g");
@@ -406,7 +406,7 @@
                                     "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI) / 1000 + " (Billion Dollars) </td></table>"))
 
                                     .style("top", svg.node().parentNode.offsetTop + 250 + "px")
-                                    .style("left", svg.node().parentNode.offsetLeft + 650 + "px");
+                                    .style("left", svg.node().parentNode.offsetLeft + 950 + "px");
                         })
                         .on("mouseout", function (d) {
                             div.transition()
