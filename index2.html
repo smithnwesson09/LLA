@@ -63,7 +63,9 @@
             width: 55%;
             height: 70%;
             text-align: left;
+            border-color: #777777;
             visibility: hidden;
+
         }
 
         table {border: black;
@@ -223,7 +225,7 @@
 
                 var margin = {left: 50, top: 25, bottom: 100, right: 50};
 
-                var graphWidth = 1000, graphHeight = 730;
+                var graphWidth = 1150, graphHeight = 730;
                 var totalWidth = graphWidth + margin.left + margin.right;
                 var totalHeight = graphHeight + margin.top + margin.bottom;
 
@@ -262,21 +264,18 @@
                 });
 
                 var xScale = d3.scale.linear()
-                    .domain([0, 10000])
-                    .range([100, graphWidth]);
-
-
-
+                    .domain([0, 20000])
+                    .range([100, totalWidth]);
 
 
                 var yScale = d3.scale.linear()
-                    .domain([2000, 0])
+                    .domain([5000, 0])
                     .range([0, graphHeight]);
 
-                var popDomain = [d3.min(debt), d3.max(debt)];
+                var popDomain = [d3.min(assets), d3.max(assets)];
                 var popScale = d3.scale.sqrt()
                     .domain(popDomain)
-                    .range([2, 18]);
+                    .range([2, 20]);
 
                 var uniqueRegions = d3.set(tic).values();
                 var regionColorMap = d3.scale.ordinal()
@@ -304,7 +303,7 @@
                     .call(yAxis);
                 styleAxisNodes(yAxisNodes);
 
-                var xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(20).tickFormat(d3.format("s"));
+                var xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(25).tickFormat(d3.format("s"));
                 var xAxisNodes = svg.append('g')
                     .attr('transform', 'translate(' + (margin.left - margin.right) + ',' + (graphHeight) + ')')
                     .call(xAxis);
@@ -330,7 +329,7 @@
                 var yearLabel = svg.append('g')
                     .append('text')
                     .attr('class', 'yearlabel')
-                    .attr('transform', 'translate(750, 700)')
+                    .attr('transform', 'translate(1000, 700)')
                     .attr('font-size', '100');
 
                 var bubblesHolder = svg.append("g");
@@ -369,7 +368,7 @@
                         cx: xScale(d.InvestedCapital),
                         cy: yScale(d.EBITDA),
                         r: popScale(d.Assets),
-                        style: "fill:" + regionColorMap(d.Name) + ";" +
+                        style: "fill:" + regionColorMap(d.Ticker) + ";" +
                             "fill-opacity:0.7;" +
                             "stroke:" + regionColorMap(d.Ticker) + ";"
                     })
@@ -404,7 +403,7 @@
                                     "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI) / 1000 + " (Billion Dollars) </td></table>"))
 
                                     .style("top", svg.node().parentNode.offsetTop + 250 + "px")
-                                    .style("left", svg.node().parentNode.offsetLeft + 650 + "px");
+                                    .style("left", svg.node().parentNode.offsetLeft + 1000 + "px");
                         })
                         .on("mouseout", function (d) {
                             div.transition()

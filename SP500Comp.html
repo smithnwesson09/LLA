@@ -265,7 +265,7 @@
 
                 var xScale = d3.scale.linear()
                     .domain([0, 75000])
-                    .range([100, graphWidth]);
+                    .range([100, totalWidth]);
 
 
 
@@ -278,7 +278,7 @@
                 var popDomain = [d3.min(assets), d3.max(assets)];
                 var popScale = d3.scale.sqrt()
                     .domain(popDomain)
-                    .range([4, 20]);
+                    .range([2, 20]);
 
                 var uniqueRegions = d3.set(tic).values();
                 var regionColorMap = d3.scale.ordinal()
@@ -306,7 +306,7 @@
                     .call(yAxis);
                 styleAxisNodes(yAxisNodes);
 
-                var xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(20).tickFormat(d3.format("s"));
+                var xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(25).tickFormat(d3.format("s"));
                 var xAxisNodes = svg.append('g')
                     .attr('transform', 'translate(' + (margin.left - margin.right) + ',' + (graphHeight) + ')')
                     .call(xAxis);
