@@ -63,7 +63,9 @@
             width: 55%;
             height: 70%;
             text-align: left;
+            border-color: #777777;
             visibility: hidden;
+
         }
 
         table {border: black;
@@ -368,9 +370,9 @@
                         cx: xScale(d.InvestedCapital),
                         cy: yScale(d.EBITDA),
                         r: popScale(d.Assets),
-                        style: "fill:" + regionColorMap(d.Name) + ";" +
+                        style: "fill:" + regionColorMap(d.Industry) + ";" +
                             "fill-opacity:0.7;" +
-                            "stroke:" + regionColorMap(d.Ticker) + ";"
+                            "stroke:" + regionColorMap(d.Industry) + ";"
                     })
                         .on("click", function (d) {
                             return window.open("https://en.wikipedia.org/wiki/" + d.Name);
