@@ -63,7 +63,9 @@
             width: 55%;
             height: 70%;
             text-align: left;
+            border-color: #777777;
             visibility: hidden;
+
         }
 
         table {border: black;
@@ -223,7 +225,7 @@
 
                 var margin = {left: 50, top: 25, bottom: 100, right: 50};
 
-                var graphWidth = 1000, graphHeight = 730;
+                var graphWidth = 1150, graphHeight = 730;
                 var totalWidth = graphWidth + margin.left + margin.right;
                 var totalHeight = graphHeight + margin.top + margin.bottom;
 
@@ -262,7 +264,7 @@
                 });
 
                 var xScale = d3.scale.linear()
-                    .domain([0, 10000])
+                    .domain([0, 75000])
                     .range([100, graphWidth]);
 
 
@@ -270,13 +272,13 @@
 
 
                 var yScale = d3.scale.linear()
-                    .domain([2000, 0])
+                    .domain([15000, 0])
                     .range([0, graphHeight]);
 
-                var popDomain = [d3.min(debt), d3.max(debt)];
+                var popDomain = [d3.min(assets), d3.max(assets)];
                 var popScale = d3.scale.sqrt()
                     .domain(popDomain)
-                    .range([2, 18]);
+                    .range([4, 20]);
 
                 var uniqueRegions = d3.set(tic).values();
                 var regionColorMap = d3.scale.ordinal()
@@ -369,9 +371,9 @@
                         cx: xScale(d.InvestedCapital),
                         cy: yScale(d.EBITDA),
                         r: popScale(d.Assets),
-                        style: "fill:" + regionColorMap(d.Name) + ";" +
+                        style: "fill:" + regionColorMap(d.Industry) + ";" +
                             "fill-opacity:0.7;" +
-                            "stroke:" + regionColorMap(d.Ticker) + ";"
+                            "stroke:" + regionColorMap(d.Industry) + ";"
                     })
                         .on("click", function (d) {
                             return window.open("https://en.wikipedia.org/wiki/" + d.Name);
@@ -457,7 +459,7 @@
             }
         }
 
-        onload(bubblechart("software.csv"));
+        onload(bubblechart("sp500.csv"));
     </script>
     <script>
         window.dataLayer = window.dataLayer || [];
