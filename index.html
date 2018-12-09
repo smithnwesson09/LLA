@@ -14,83 +14,7 @@
 
     <title>Last Liberal Art</title>
     <style>
-        body {
-            font-size: 100%;
-            font-family: "Courier New", Courier, monospace;
-            max-width: 1450px;
-            min-width: 1450px;
-            margin: 3px 0 3px 0;
-            text-align: center;
-            -moz-box-shadow:  0 0 10px #f7f7f5;
-            -webkit-box-shadow: 0 0 10px #f7f7f5;
-            box-shadow: 0 0 10px #f7f7f5;
-            border: 4px double;
-        }
 
-        header {
-            max-width: fit-content;
-            min-width: 860px;
-            height: fit-content;
-            margin: 5px auto 5px auto;
-            background-color: #ffffff;
-            position: center;
-            box-shadow: 5px 10px 5px #888888;
-            border: 1px solid;}
-
-
-
-        /* Smartphones (portrait and landscape) ----------- */
-        @media only screen
-        and (min-device-width : 1250px)
-        and (max-device-width : 1250px) {
-            body {
-                font-size: 100%;
-                font-family: "Courier New", Courier, monospace;
-                max-width: 1450px;
-                min-width: 1450px;
-                padding: 20px;
-                margin: 3px auto 3px auto;
-                text-align: center;
-                -moz-box-shadow:  0 0 10px #f7f7f5;
-                -webkit-box-shadow: 0 0 10px #f7f7f5;
-                box-shadow: 0 0 10px #f7f7f5;
-                border: 4px double;}
-        }
-        @media only screen
-        and (min-device-width : 960px)
-        and (max-device-width : 960px){
-
-            #page {
-                max-width: 960px;
-                min-width: 960px;
-                margin: 3px auto 3px auto;
-                background-color: #ffffff;
-                border: 1px solid;
-                position: center;
-                box-shadow: 5px 10px 8px #888888;
-                border-radius: 10px;
-                -moz-border-radius:3px;
-                -webkit-border-radius: 3px;}}
-
-        @media only screen
-        and (min-device-width : 650px)
-        and (max-device-width : 700px) {
-            ul {
-                width: 700px;
-                padding: 15px;
-                margin: 0px auto 0px auto;
-                border-top: 2px solid #000;
-                border-bottom: 1px solid #000;
-                text-align: center;}}
-
-        li {
-            display: inline;
-            margin: 0px 0px;}
-        p {
-            text-align: center;
-            width: 600px;
-            margin: 10px auto 10px auto;
-            font-weight: normal;}
 
         a {
             color: #000000;
@@ -533,32 +457,7 @@
                     });
             }
         }
-        var questions = [
-            { "prompt": "Why is the sky blue?",
-                "responses": [
-                    "Because the color blue was on sale at Wallmart",
-                    "Because blue is the prettiest color",
-                    "Because the air molecules difract blue light more than any other color"
-                ]
-            },
-            { "prompt": "Why are leaves usually green?",
-                "responses": [
-                    "So green caterpillars can hide better.",
-                    "Because leaves can more easily make energy with green light",
-                    "Because leaves absorb red and blue light so it's green that is reflected"
-                ]
-            }
-        ];
-
-        d3.select("body").selectAll("ul")
-            .data(questions)
-            .enter().append("ul")
-            .text(function(d) { return d.prompt })
-            .selectAll("li")
-            .data(function(d) { return d.responses; })
-            .enter().append("li")
-            .text(function(d) { return d })
-            .style("background-color", function(d, i) { return i % 2 ? "#eee" : "#ddd"; });
+       
         bubblechart("software.csv")
     </script>
     <script>
