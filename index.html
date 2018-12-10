@@ -375,7 +375,7 @@
                             "stroke:" + regionColorMap(d.Ticker) + ";"
                     })
                         .on("click", function (d) {
-                            return window.open("https://en.wikipedia.org/wiki/" + d.Name);
+                            return window.open("https://finance.yahoo.com/quote/"+d.Ticker+"/key-statistics?p="+d.Ticker);
                         })
                         .on("mouseover", function (d) {
                             div.transition()
