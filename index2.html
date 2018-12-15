@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <meta property="og:url"                content="images/Mortgage.JPG" />
+    <meta property="og:url"                content="Mortgage.JPG" />
     <meta property="og:title"              content="Liberal Arts" />
-    <meta property="og:image"              content="images/Mortgage.JPG"/>
+    <meta property="og:image"              content="Mortgage.JPG"/>
     <meta charset='UTF-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Last Liberal Art</title>
@@ -64,24 +64,28 @@
             height: 70%;
             text-align: left;
             visibility: hidden;
+
         }
 
-        table {border: black;
+        table {border: 1px double black;
             border-collapse: collapse;
-            height: 40%;
-            width: 30%;
+            height: 50%;
+            width: 38%;
             background-color: ghostwhite;
             color: black;
             border-radius: 5px;
-            font-size: 110%;
+            font-size: 95%;
+
         }
 
         td {
             text-align: left;
+            border: 2px black solid;
             border-bottom: 1px solid #ddd;
         }
 
         th {
+            border: 1px double black;
             position: center;
             text-align: center;
             font-size: large;
@@ -264,7 +268,7 @@
             });
 
             var xScale = d3.scale.linear()
-                .domain([0, d3.max(capital)])
+                .domain([0, 20000])
                 .range([100, totalWidth]);
 
 
@@ -272,13 +276,13 @@
 
 
             var yScale = d3.scale.linear()
-                .domain([d3.max(ebitda), 0])
+                .domain([10000, 0])
                 .range([0, graphHeight]);
 
             var popDomain = [d3.min(assets), d3.max(assets)];
             var popScale = d3.scale.sqrt()
                 .domain(popDomain)
-                .range([3, 18]);
+                .range([5, 20]);
 
             var uniqueRegions = d3.set(tic).values();
             var regionColorMap = d3.scale.ordinal()
@@ -406,8 +410,8 @@
                                 +
                                 "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI) / 1000 + " (Billion Dollars) </td></table>"))
 
-                                .style("top", svg.node().parentNode.offsetTop + 200 + "px")
-                                .style("left", svg.node().parentNode.offsetLeft + 1500 + "px");
+                                .style("top", svg.node().parentNode.offsetTop + 150 + "px")
+                                .style("left", svg.node().parentNode.offsetLeft + 1400 + "px");
                     })
                     .on("mouseout", function (d) {
                         div.transition()
@@ -460,7 +464,7 @@
         }
     }
 
-    onload(bubblechart("sp500.csv"));
+    onload(bubblechart("software.csv"));
 </script>
 <script>
     window.dataLayer = window.dataLayer || [];
