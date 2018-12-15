@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>D3: Subselection Example</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <style type="text/css">
+
+
+        body {
+            padding-top: 25px;
+            padding-bottom: 25px;
+            font: 16px sans-serif;
+            width: 50%;
+            margin-top: 75px;
+            margin-left: 100px;
+            margin-right: 100px;
+            position: center;
+        }
+
+        ul {
+            margin-top: 15px;
+            list-style: none;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        li {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 35px;
+            margin-left: 35px;
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-weight: normal;
+            -webkit-box-shadow: 0 0 2.5px gainsboro;
+            -moz-box-shadow:  0 0 2.5px gainsboro;
+            box-shadow:  0 0 2.5px gainsboro;
+
+        }
+
+
+
+    </style>
+    <!-- CSS_ADSBLOCK_START -->
+    <link rel="stylesheet" href="http://adblockers.opera-mini.net/css_block/default-domainless.css" type="text/css" />
+    <!-- CSS_ADSBLOCK_END -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+</head>
+<body>
+<div id="wrds">
+
+</div>
+<script>
+
+
+    var revenue1 = " We generate substantially all of our revenue from advertising."+
+        " Advertising accounted for 98%, 97% and 95%, respectively, of our revenue in 2017, 2016, 2015." +
+        " Advertising revenue growth has become increasingly dependent upon increased pricing of our ads." ;
+
+    var revenue2 =
+        "Revenue in 2017 increased $13.02 billion, or 47%, compared to 2016. The increase was mostly due to an increase in advertising revenue, partially offset by the continuing decline in Payments revenue.\n" +
+        "The most important factor driving advertising revenue growth was an increase in revenue from ads on mobile devices. For 2017, we estimate that mobile advertising revenue represented approximately 88% of total advertising revenue, " +
+        "as compared with approximately 83% in 2016. Factors that influenced our advertising revenue growth in 2017 included:" +
+        "(i) an increase in average price per ad, " +
+        "(ii) an increase in users and their engagement, and " +
+        "(iii) an increase in the number and frequency of ads displayed on mobile devices. " ;
+
+
+    var revfactors =     "We anticipate that advertising revenue growth will continue to be driven primarily by price rather than increases in the number and frequency of ads displayed. In 2017 compared to 2016, the average price per ad increased by 29%, as compared with approximately 5% in 2016, and the number of ads delivered increased by 15%, as compared with approximately 50% in 2016." +
+        " The increase in average price per ad was driven by an increase in demand for our ad inventory; " +
+        " factors contributing to this include an increase in spend from existing marketers and an increase in the number of marketers actively advertising on our platform as well as the quality, relevance, and performance of those ads.";
+
+     var others = "Payments and other fees revenue in 2017 decreased $42 million, or 6%, compared to 2016. The decline in Payments and other fees revenue was primarily due to decreased Payments revenue from games played on personal computers, partially offset " +
+        "by the revenue from the delivery of virtual reality platform devices. We anticipate Payments revenue will continue to decline, and such decline will be offset by increases in revenue from various other sources.\n" +
+        "2016 Compared to 2015. Revenue in 2016 increased $9.71 billion, or 54%, compared to 2015. The increase was mostly due to an increase in advertising revenue.\n" +
+        "The most important factor driving advertising revenue growth was an increase in revenue from ads in News Feed. For 2016, we estimate that mobile advertising revenue represented approximately 83% of total advertising revenue, " +
+        "as compared with approximately 77% in 2015. Factors that influenced our advertising revenue growth in 2016 included (i) an increase in demand for our ad inventory, in part driven by an increase in the number of marketers actively " +
+        "advertising on Facebook, (ii) an increase in user growth and engagement, and (iii) an increase in the number and frequency of ads displayed in News Feed, as well as the quality,\n" +
+        "relevance, and performance of those ads." +
+        "In 2016 compared to 2015, the average price per ad increased by 5% and the number of ads delivered increased by 50%. The increase in average price per ad was driven by a continued mix shift towards a greater percentage of our ads " +
+        "being shown in News Feed while the increase in the ads delivered was driven by the same factors that influenced our advertising growth.\n" +
+        "Payments and other fees revenue in 2016 decreased $96 million, or 11%, compared to 2015. The majority of the decrease in Payments and other fees revenue was due to decreased Payments revenue from games played on personal computers.\n" +
+        "No customer represented 10% or more of total revenue during the years ended December 31, 2017, 2016, and 2015.";
+
+
+    var revcost = "2017 Compared to 2016. Cost of revenue in 2017 increased $1.67 billion, or 44%, compared to 2016. " +
+        "The majority of the increase was due to an increase in operational expenses related to our data centers and technical infrastructure and," +
+        " to a lesser extent, higher costs associated with partnership agreements, including content acquisition costs, and ads payment processing." +
+        "In 2018, we anticipate that the cost of revenue will increase as we continue to expand our data center capacity and technical infrastructure to support user growth," +
+        " increased user engagement, and the delivery of new products and services and, to a lesser extent, due to higher costs associated with ads payment processing and various partnership agreements.";
+
+    var questions = [
+        { "prompt": "How does Facebook Make Money",
+            "responses": [
+                revenue1
+            ]
+        },
+        { "prompt": "How has that process worked out for you?",
+            "responses": [
+                revenue2
+            ]
+        },
+        { "prompt": "What real factors have driven these results?",
+            "responses": [
+                revfactors
+            ],
+
+        },
+
+        { "prompt": "What costs are involved in Facebooks advertising operations?",
+            "responses": [
+                revcost
+            ],
+
+        },
+
+    ];
+
+    d3.select("body").selectAll("ul")
+        .data(questions)
+        .enter().append("ul")
+        .text(function(d) { return d.prompt })
+        .selectAll("li")
+        .data(function(d) { return d.responses; })
+        .enter().append("li")
+        .text(function(d) { return d })
+        .style("background-color", function(d, i) { return i % 2 ? "#eee" : "#ddd"; });
+
+
+
+
+
+</script>
+</body>
+</html>

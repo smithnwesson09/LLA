@@ -267,10 +267,6 @@
                     .domain([0, 75000])
                     .range([100, totalWidth]);
 
-
-
-
-
                 var yScale = d3.scale.linear()
                     .domain([15000, 0])
                     .range([0, graphHeight]);
@@ -278,7 +274,7 @@
                 var popDomain = [d3.min(assets), d3.max(assets)];
                 var popScale = d3.scale.sqrt()
                     .domain(popDomain)
-                    .range([2, 20]);
+                    .range([3, 30]);
 
                 var uniqueRegions = d3.set(tic).values();
                 var regionColorMap = d3.scale.ordinal()
@@ -292,10 +288,15 @@
                     .style('overflow-x', 'auto')
                     .style('pointer-events', 'none');
 
-                var svg = d3.select('#chart').append('svg')
-                    .attr('width', totalWidth)
-                    .attr('height', totalHeight)
-                    .attr("border", "1px lightgray solid");
+                var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", totalWidth)
+                    .attr("height", totalHeight)
+                    .style("background", "ghostwhite")
+                    .call(d3.behavior.zoom().on("zoom", function () {
+                        svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+                    }))
+                    .append("g")
 
 
 
@@ -327,13 +328,13 @@
                     .attr("x", -135)
                     .attr("dy", ".95em")
                     .attr("transform", "rotate(-90)")
-                    .text("EBITDA, Inflation-adjusted ($ in Millions)");
+                    .text("Earnings Before Interest Depreciation and Amortization, Inflation-adjusted ($ in Millions)");
 
                 var yearLabel = svg.append('g')
                     .append('text')
                     .attr('class', 'yearlabel')
                     .attr('transform', 'translate(1000, 700)')
-                    .attr('font-size', '100');
+                    .attr('font-size', '200');
 
                 var bubblesHolder = svg.append("g");
 
@@ -459,7 +460,7 @@
             }
         }
 
-        onload(bubblechart("sp500.csv"));
+        onload(bubblechart("market.csv"));
     </script>
     <script>
         window.dataLayer = window.dataLayer || [];

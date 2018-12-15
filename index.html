@@ -139,7 +139,7 @@
             width: 25px;
             height: 25px;
             border-radius: 50%;
-            background: #4CAF50;
+            background: scroll;
             cursor: pointer;
         }
 
@@ -161,19 +161,20 @@
             </ul>
         </nav>
     </header>
+</div>
 
 
+    <div id="chart">    </div>
 
-    <div id="chart">
-
-
-    </div>
 
     <span id='min-time'>1950</span>
-    <input type="range" name="points" min="1950" max="2018" step="1" value="2017" id="slide" style="width:900px">
-    <span id="max-time">2017</span>
+    <input type="range" name="points" min="1950" max="2018" step="1" value="2017" id="slide" style="width:900px; position: center ;">
+    <span id="max-time">2018</span>
     <br>
+
     <script type="text/javascript">
+
+
 
         function bubblechart(str) {
 
@@ -224,7 +225,7 @@
 
                 var margin = {left: 50, top: 25, bottom: 100, right: 50};
 
-                var graphWidth = 1000, graphHeight = 730;
+                var graphWidth = 1950, graphHeight = 730;
                 var totalWidth = graphWidth + margin.left + margin.right;
                 var totalHeight = graphHeight + margin.top + margin.bottom;
 
@@ -264,7 +265,7 @@
 
                 var xScale = d3.scale.linear()
                     .domain([0, d3.max(capital)])
-                    .range([100, graphWidth]);
+                    .range([100, totalWidth]);
 
 
 
@@ -274,10 +275,10 @@
                     .domain([d3.max(ebitda), 0])
                     .range([0, graphHeight]);
 
-                var popDomain = [d3.min(debt), d3.max(debt)];
+                var popDomain = [d3.min(assets), d3.max(assets)];
                 var popScale = d3.scale.sqrt()
                     .domain(popDomain)
-                    .range([2, 18]);
+                    .range([3, 18]);
 
                 var uniqueRegions = d3.set(tic).values();
                 var regionColorMap = d3.scale.ordinal()
@@ -294,7 +295,7 @@
                 var svg = d3.select('#chart').append('svg')
                     .attr('width', totalWidth)
                     .attr('height', totalHeight)
-                    .attr("border", "1px lightgray solid");
+                    .style("background", "gainsboro");
 
 
 
@@ -305,7 +306,7 @@
                     .call(yAxis);
                 styleAxisNodes(yAxisNodes);
 
-                var xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(20).tickFormat(d3.format("s"));
+                var xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(30).tickFormat(d3.format("s"));
                 var xAxisNodes = svg.append('g')
                     .attr('transform', 'translate(' + (margin.left - margin.right) + ',' + (graphHeight) + ')')
                     .call(xAxis);
@@ -331,8 +332,9 @@
                 var yearLabel = svg.append('g')
                     .append('text')
                     .attr('class', 'yearlabel')
-                    .attr('transform', 'translate(750, 700)')
-                    .attr('font-size', '100');
+                    .attr('transform', 'translate(1650, 650)')
+                    .attr('font-size', '150')
+                    .style('font-family', 'Rockwell');
 
                 var bubblesHolder = svg.append("g");
 
@@ -404,8 +406,8 @@
                                     +
                                     "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI) / 1000 + " (Billion Dollars) </td></table>"))
 
-                                    .style("top", svg.node().parentNode.offsetTop + 250 + "px")
-                                    .style("left", svg.node().parentNode.offsetLeft + 650 + "px");
+                                    .style("top", svg.node().parentNode.offsetTop + 150 + "px")
+                                    .style("left", svg.node().parentNode.offsetLeft + 1600 + "px");
                         })
                         .on("mouseout", function (d) {
                             div.transition()

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>D3: Subselection Example</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <style type="text/css">
+
+        body {
+            font: 16px sans-serif;
+            width: 50%;
+        }
+
+        ul {
+            list-style: none;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        li {
+            margin:  0.3em 0.3em;
+            padding: 0.5em 1.0em;
+            font-weight: normal;
+        }
+
+    </style>
+    <!-- CSS_ADSBLOCK_START -->
+    <link rel="stylesheet" href="http://adblockers.opera-mini.net/css_block/default-domainless.css" type="text/css" />
+    <!-- CSS_ADSBLOCK_END -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+</head>
+<body>
+<script>
+
+var goals= "Our mission is to give people the power to build community and bring the world closer together." +
+    "Our top priority is to build useful and engaging products that enable people to connect and share with friends and family through mobile devices," +
+    " personal computers, and other surfaces. We also help people discover and learn about what is going on in the world around them, " +
+    "enable people to share their opinions, ideas, photos and videos, and other activities with audiences ranging from their closest friends " +
+    "to the public at large, and stay connected everywhere by accessing our products, including:";
+
+var description = "Facebook enables people to connect, share, discover, and communicate with each " +
+    "other on mobile devices and personal computers. There are a number of different ways to " +
+    "engage with people on Facebook, the most important of which is News Feed which displays " +
+    "an algorithmically-ranked series of stories and advertisements individualized for each person.";
+
+var competition= "Our business is characterized by innovation, rapid change, and disruptive technologies. " +
+    "We compete with companies that sell advertising, as well as with companies that provide social, media, " +
+    "and communication products and services that are designed to engage users on mobile devices and online." +
+    " We face significant competition in every aspect of our business, including from companies that facilitate " +
+    "communication and the sharing of content and information, companies that enable marketers to display advertising, " +
+    "companies that distribute video and other forms of media content, and companies that provide development platforms" +
+    " for applications developers. We compete to attract, engage, and retain people who use our products, to attract and " +
+    "retain marketers, and to attract and retain developers to build compelling mobile and web applications that integrate " +
+    "with our products.We face significant competition in every aspect of our business, including from companies that facilitate" +
+    " communication and the sharing of content and information, companies that enable marketers to display advertising, " +
+    "companies that distribute video and other forms of media content, and companies that provide development platforms " +
+    "for applications developers. We compete to attract, engage, and retain people who use our products, " +
+    "to attract and retain marketers, and to attract and retain developers to build compelling mobile " +
+    "and web applications that integrate with our products.";
+
+var risk = "If we are unable to maintain or increase our user base and user engagement, our revenue and financial " +
+    "results may be adversely affected. Any decrease in user retention, growth, or engagement could render our products" +
+    " less attractive to users, marketers, and developers, which is likely to have a material and adverse impact on our " +
+    "revenue, business, financial condition, and results of operations. If our active user growth rate continues to slow, " +
+    "we will become increasingly dependent on our ability to maintain or increase levels of user engagement and monetization " +
+    "in order to drive revenue growth.";
+
+var revenue2 = "We generate substantially all of our revenue from advertising. The loss of marketers, or reduction in spending by marketers, could seriously harm our business." +
+    "Substantially all of our revenue is currently generated from third parties advertising on Facebook and Instagram. For 2017, 2016, and 2015, " +
+    "advertising accounted for 98%, 97% and 95%, respectively, of our revenue. As is common in the industry, our marketers do not have long-term advertising commitments with us." +
+    " Many of our marketers spend only a relatively small portion of their overall advertising budget with us. Marketers will not continue to do business with us, or they will reduce " +
+    "the budgets they are willing to commit to us, if we do not deliver ads in an effective manner, or if they do not believe that their investment in advertising with us will generate " +
+    "a competitive return relative to other alternatives. In addition, our advertising revenue growth has become increasingly dependent upon increased pricing of our ads." +
+    " If we are unable to provide marketers with a suitable return on investment, the pricing of our ads may not increase, or may decline, in which case our revenue and financial results may be harmed. " +
+    "The majority of our marketers use our self-service ad platform to launch and manage their advertising campaigns. We also have a global sales force that is focused on attracting and retaining" +
+    " advertisers and providing support to them throughout the stages of the marketing cycle from pre-purchase decision-making to real-time optimizations to post-campaign analytics. We work directly" +
+    " with these advertisers, through traditional advertising agencies, and with an ecosystem of specialized agencies and partners. We currently operate six support offices and more than 40 sales " +
+    "offices around the globe. We also invest in and rely on self-service tools to provide direct customer support to our users and partners";
+
+
+
+
+
+var revenue1 =
+    "Revenue in 2017 increased $13.02 BILLION, or 47%, compared to 2016. The increase was mostly due to an increase in advertising revenue, partially offset by the continuing decline in Payments revenue." +
+    "The most important factor driving advertising revenue growth was an increase in revenue from ads on mobile devices." +
+    "For 2017, we estimate that mobile advertising revenue represented approximately 88% of total advertising revenue, as compared with approximately 83% in 2016. " +
+    "Factors that influenced our advertising revenue growth in 2017 included:" +
+    "(i) an increase in average price per ad," +
+    "(ii) an increase in users and their engagement, and " +
+    "(iii) an increase in the number and frequency of ads displayed on mobile devices. " +
+    "We anticipate that advertising revenue growth will continue to be driven primarily by price rather than increases in the number and frequency of ads displayed." +
+    "In 2017 compared to 2016, the average price per ad increased by 29%, as compared with approximately 5% in 2016, and the number of ads delivered increased by 15%, as compared with approximately 50% in 2016. " +
+    "The increase in average price per ad was driven by an increase in demand for our ad inventory; factors contributing to this include an increase in spend from existing marketers and an increase in the number of marketers actively advertising on our platform as well as the quality, relevance, and performance of those ads. The increase in the ads delivered was driven by an increase in users and their engagement and an increase in the number and frequency of ads displayed on News Feed, partially offset by increasing user engagement with video content and other product changes.\n" +
+    "Advertising spending is traditionally seasonally strong in the fourth quarter of each year. " +
+    "We believe that this seasonality in advertising spending affects our quarterly results, " +
+    "which generally reflect significant growth in advertising revenue between the third and fourth quarters and a decline in advertising spending between the fourth and subsequent first quarters. " +
+    "For instance, our advertising revenue increased 26%, 27%, and 31% between the third and fourth quarters of 2017, 2016, and 2015, respectively, while advertising revenue for both the first quarters of 2017 and 2016 declined 9% and 8% compared to the fourth quarters of 2016 and 2015, respectively.\n" +
+    "Payments and other fees revenue in 2017 decreased $42 million, or 6%, compared to 2016. The decline in Payments and other fees revenue was primarily due to decreased Payments revenue from games played on personal computers, partially offset by the revenue from the delivery of virtual reality platform devices. We anticipate Payments revenue will continue to decline, and such decline will be offset by increases in revenue from various other sources.\n" +
+    "2016 Compared to 2015. Revenue in 2016 increased $9.71 billion, or 54%, compared to 2015. The increase was mostly due to an increase in advertising revenue.\n" +
+    "The most important factor driving advertising revenue growth was an increase in revenue from ads in News Feed. For 2016, we estimate that mobile advertising revenue represented approximately 83% of total advertising revenue, as compared with approximately 77% in 2015. Factors that influenced our advertising revenue growth in 2016 included (i) an increase in demand for our ad inventory, in part driven by an increase in the number of marketers actively advertising on Facebook, (ii) an increase in user growth and engagement, and (iii) an increase in the number and frequency of ads displayed in News Feed, as well as the quality,\n" +
+    "In 2016 compared to 2015, the average price per ad increased by 5% and the number of ads delivered increased by 50%. The increase in average price per ad was driven by a continued mix shift towards a greater percentage of our ads being shown in News Feed while the increase in the ads delivered was driven by the same factors that influenced our advertising growth.\n" +
+    "Payments and other fees revenue in 2016 decreased $96 million, or 11%, compared to 2015. The majority of the decrease in Payments and other fees revenue was due to decreased Payments revenue from games played on personal computers.\n" +
+    "No customer represented 10% or more of total revenue during the years ended December 31, 2017, 2016, and 2015.\n" +
+    "Foreign Exchange Impact on Revenue\n" +
+    "The general weakening of the U.S. dollar relative to certain foreign currencies in the full year 2017 compared to the same period in 2016 had a favorable impact on our revenue. If we had translated revenue for the full year 2017 using the prior year's monthly exchange rates for our settlement currencies other than the U.S. dollar, our total revenue and advertising revenue would have been $40.36 billion and $39.65 billion, respectively. Using these constant rates, revenue and advertising revenue would have been $293 million and $292 million lower than actual revenue and advertising revenue, respectively, for the full year 2017.\n" +
+    "The general strengthening of the U.S. dollar relative to certain foreign currencies in the full year 2016 compared to the same period in 2015 had an unfavorable impact on our revenue. If we had translated revenue for the full year 2016 using 2015 monthly exchange rates for our settlement currencies other than the U.S. dollar, our total revenue and advertising revenue would have been $27.91 billion and $27.15 billion, respectively. Using these constant rates, revenue and advertising revenue would have been $270 million and $269 million higher than actual revenue and advertising revenue, respectively, for the full year 2016.\n" +
+    "Cost of revenue\n";
+
+var questions = [
+    { "prompt": "What is Facebook?",
+        "responses": [
+           description
+        ]
+    },
+    { "prompt": "How does Facebook Make Money?",
+        "responses": [
+            revenue2
+        ]
+    },
+    { "prompt": "What risks does Facebook face?",
+        "responses": [
+            risk
+        ]
+    },
+
+    { "prompt": "What are Facebook's Goals and forward looking Mission?",
+        "responses": [
+            goals
+        ]
+    }
+];
+
+d3.select("body").selectAll("ul")
+    .data(questions)
+    .enter().append("ul")
+    .text(function(d) { return d.prompt })
+    .selectAll("li")
+    .data(function(d) { return d.responses; })
+    .enter().append("li")
+    .text(function(d) { return d })
+    .style("background-color", function(d, i) { return i % 2 ? "#eee" : "#ddd"; });
+
+
+
+
+
+</script>
+</body>
+</html>
