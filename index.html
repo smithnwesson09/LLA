@@ -60,8 +60,8 @@
         div.tooltip {
             float: right;
             position: absolute;
-            width: 55%;
-            height: 70%;
+            width: 45%;
+            height: 40%;
             text-align: left;
             visibility: hidden;
 
@@ -168,14 +168,16 @@
 </div>
 
 
-<div id="chart">    </div>
+<div id="chart">
 
 
 <span id='min-time'>1950</span>
 <input type="range" name="points" min="1950" max="2018" step="1" value="2017" id="slide" style="width:900px; position: center ;">
 <span id="max-time">2018</span>
 <br>
-
+<br>
+<br>
+</div>
 <script type="text/javascript">
 
 
@@ -336,7 +338,7 @@
             var yearLabel = svg.append('g')
                 .append('text')
                 .attr('class', 'yearlabel')
-                .attr('transform', 'translate(1500, 650)')
+                .attr('transform', 'translate(1400, 700)')
                 .attr('font-size', '150')
                 .style('font-family', 'Rockwell');
 
@@ -381,7 +383,7 @@
                         "stroke:" + regionColorMap(d.Ticker) + ";"
                 })
                     .on("click", function (d) {
-                        return window.open("https://finance.yahoo.com/quote/"+d.Ticker+"/key-statistics?p="+d.Ticker);
+                        return window.open("https://finance.yahoo.com/chart/"+d.Ticker+"#eyJpbnRlcnZhbCI6ImRheSIsInBlcmlvZGljaXR5IjoxLCJ0aW1lVW5pdCI6bnVsbCwiY2FuZGxlV2lkdGgiOjgsInZvbHVtZVVuZGVybGF5Ijp0cnVlLCJhZGoiOnRydWUsImNyb3NzaGFpciI6dHJ1ZSwiY2hhcnRUeXBlIjoibGluZSIsImV4dGVuZGVkIjpmYWxzZSwibWFya2V0U2Vzc2lvbnMiOnt9LCJhZ2dyZWdhdGlvblR5cGUiOiJvaGxjIiwiY2hhcnRTY2FsZSI6ImxpbmVhciIsInBhbmVscyI6eyJjaGFydCI6eyJwZXJjZW50IjoxLCJkaXNwbGF5IjoiQ1NDTyIsImNoYXJ0TmFtZSI6ImNoYXJ0IiwidG9wIjowfX0sInNldFNwYW4iOnt9LCJsaW5lV2lkdGgiOjIsInN0cmlwZWRCYWNrZ3JvdWQiOnRydWUsImV2ZW50cyI6dHJ1ZSwiY29sb3IiOiIjMDA4MWYyIiwiZXZlbnRNYXAiOnsiY29ycG9yYXRlIjp7ImRpdnMiOnRydWUsInNwbGl0cyI6dHJ1ZX0sInNpZ0RldiI6e319LCJzeW1ib2xzIjpbeyJzeW1ib2wiOiJDU0NPIiwic3ltYm9sT2JqZWN0Ijp7InN5bWJvbCI6IkNTQ08ifSwicGVyaW9kaWNpdHkiOjEsImludGVydmFsIjoiZGF5IiwidGltZVVuaXQiOm51bGwsInNldFNwYW4iOnt9fV0sInN0dWRpZXMiOnsidm9sIHVuZHIiOnsidHlwZSI6InZvbCB1bmRyIiwiaW5wdXRzIjp7ImlkIjoidm9sIHVuZHIiLCJkaXNwbGF5Ijoidm9sIHVuZHIifSwib3V0cHV0cyI6eyJVcCBWb2x1bWUiOiIjMDBiMDYxIiwiRG93biBWb2x1bWUiOiIjRkYzMzNBIn0sInBhbmVsIjoiY2hhcnQiLCJwYXJhbWV0ZXJzIjp7IndpZHRoRmFjdG9yIjowLjQ1LCJjaGFydE5hbWUiOiJjaGFydCJ9fX19");
                     })
                     .on("mouseover", function (d) {
                         div.transition()
@@ -408,10 +410,10 @@
                                 +
                                 "<tr><td><b>Pre-Tax Profit Margin: </b></td><td>" + Math.round((d.PTI / d.Revenue) * 100) + "%</td></tr>"
                                 +
-                                "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI) / 1000 + " (Billion Dollars) </td></table>"))
+                                "<tr><td><b>Net Income: </b></td><td>$" + Math.round(d.NI) / 1000 + " (Billion " + d. Currency +") </td></table>"))
 
-                                .style("top", svg.node().parentNode.offsetTop + 150 + "px")
-                                .style("left", svg.node().parentNode.offsetLeft + 1400 + "px");
+                                .style("top", svg.node().parentNode.offsetTop + 425 + "px")
+                                .style("left", svg.node().parentNode.offsetLeft + 1375 + "px");
                     })
                     .on("mouseout", function (d) {
                         div.transition()
@@ -464,7 +466,7 @@
         }
     }
 
-    onload(bubblechart("software.csv"));
+    onload(bubblechart("sp500.csv"));
 </script>
 <script>
     window.dataLayer = window.dataLayer || [];

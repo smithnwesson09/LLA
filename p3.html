@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>D3: Subselection Example</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <style type="text/css">
+
+
+        body {
+            padding-top: 25px;
+            padding-bottom: 25px;
+            font: 16px sans-serif;
+            width: 50%;
+            margin-top: 75px;
+            margin-left: 100px;
+            margin-right: 100px;
+            position: center;
+        }
+
+        ul {
+            margin-top: 15px;
+            list-style: none;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        li {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 35px;
+            margin-left: 35px;
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-weight: normal;
+            -webkit-box-shadow: 0 0 2.5px gainsboro;
+            -moz-box-shadow:  0 0 2.5px gainsboro;
+            box-shadow:  0 0 2.5px gainsboro;
+
+        }
+
+
+
+    </style>
+    <!-- CSS_ADSBLOCK_START -->
+    <link rel="stylesheet" href="http://adblockers.opera-mini.net/css_block/default-domainless.css" type="text/css" />
+    <!-- CSS_ADSBLOCK_END -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+</head>
+<body>
+<div id="wrds">
+
+</div>
+<script>
+
+
+    var revenue1 = " We generate revenues primarily by delivering advertising on Google properties and Google Network Members properties."+
+        "Google properties revenues consist primarily of advertising revenues generated on Google.com, the Google"+
+    " Search app, and other Google owned and operated properties like Gmail, Google Maps, Google Play, and YouTube."+
+    " Google Network Members’ properties revenues consist primarily of advertising revenues generated on Google Network Members’ properties."+
+    " Our customers generally purchase advertising inventory through AdWords, DoubleClick AdExchange, and"+
+    " DoubleClick Bid Manager, among others. Most of our customers pay us on a cost-per-click basis (CPC), which means that an advertiser pays us only when"+
+    " a user clicks on an ad on Google properties or Google Network Members' properties or views certain YouTube"+
+    " engagement ads. For these customers, we recognize revenue each time a user clicks on the ad or when a user views"+
+    " the ad for a specified period of time." ;
+
+    var revenue2 =
+        "We also offer advertising on other bases such as cost-per-impression (CPM), which means an advertiser pays" +
+        "us based on the number of times their ads are displayed on Google properties or Google Network Members’properties."+
+        " For these customers, we recognize revenue each time an ad is displayed. Certain customers may receive cash-based incentives or credits, which are accounted for as variable"+
+        "consideration. We estimate these amounts based on the expected amount to be provided to customers and reduce"+
+        "revenues recognized. We believe that there will not be significant changes to our estimates of variable consideration."+
+        "For ads placed on Google Network Members’ properties, we evaluate whether we are the principal (i.e., report"+
+        "revenues on a gross basis) or agent (i.e., report revenues on a net basis). Generally, we report advertising revenues" +
+        "for ads placed on Google Network Members’ properties on a gross basis, that is, the amounts billed to our customers"+
+        "are recorded as revenues, and amounts paid to Google Network Members are recorded as cost of revenues. Where" +
+        "we are the principal, we control the advertising inventory before it is transferred to our customers. Our control is"+
+        "evidenced by our sole ability to monetize the advertising inventory before it is transferred to our customers, and is"+
+        "further supported by us being primarily responsible to our customers and having a level of discretion in esta" ;
+
+
+    var revfactors =     "We anticipate that advertising revenue growth will continue to be driven primarily by price rather than increases in the number and frequency of ads displayed. In 2017 compared to 2016, the average price per ad increased by 29%, as compared with approximately 5% in 2016, and the number of ads delivered increased by 15%, as compared with approximately 50% in 2016." +
+        " The increase in average price per ad was driven by an increase in demand for our ad inventory; " +
+        " factors contributing to this include an increase in spend from existing marketers and an increase in the number of marketers actively advertising on our platform as well as the quality, relevance, and performance of those ads.";
+
+    var others = "Payments and other fees revenue in 2017 decreased $42 million, or 6%, compared to 2016. The decline in Payments and other fees revenue was primarily due to decreased Payments revenue from games played on personal computers, partially offset " +
+        "by the revenue from the delivery of virtual reality platform devices. We anticipate Payments revenue will continue to decline, and such decline will be offset by increases in revenue from various other sources.\n" +
+        "2016 Compared to 2015. Revenue in 2016 increased $9.71 billion, or 54%, compared to 2015. The increase was mostly due to an increase in advertising revenue.\n" +
+        "The most important factor driving advertising revenue growth was an increase in revenue from ads in News Feed. For 2016, we estimate that mobile advertising revenue represented approximately 83% of total advertising revenue, " +
+        "as compared with approximately 77% in 2015. Factors that influenced our advertising revenue growth in 2016 included (i) an increase in demand for our ad inventory, in part driven by an increase in the number of marketers actively " +
+        "advertising on Facebook, (ii) an increase in user growth and engagement, and (iii) an increase in the number and frequency of ads displayed in News Feed, as well as the quality,\n" +
+        "relevance, and performance of those ads." +
+        "In 2016 compared to 2015, the average price per ad increased by 5% and the number of ads delivered increased by 50%. The increase in average price per ad was driven by a continued mix shift towards a greater percentage of our ads " +
+        "being shown in News Feed while the increase in the ads delivered was driven by the same factors that influenced our advertising growth.\n" +
+        "Payments and other fees revenue in 2016 decreased $96 million, or 11%, compared to 2015. The majority of the decrease in Payments and other fees revenue was due to decreased Payments revenue from games played on personal computers.\n" +
+        "No customer represented 10% or more of total revenue during the years ended December 31, 2017, 2016, and 2015.";
+
+
+    var revcost = "We expense advertising and promotional costs in the period in which they are incurred. For the years ended"+
+    "December 31, 2015, 2016 and 2017, advertising and promotional expenses totaled approximately $3.2 billion, $3.9"+
+    "billion, and $5.1 billion, respectively.";
+
+    var questions = [
+        { "prompt": "How does Google Make Money",
+            "responses": [
+                revenue1
+            ]
+        },
+        { "prompt": "How has that process worked out?",
+            "responses": [
+                revenue2
+            ]
+        },
+
+        { "prompt": "What costs are involved in Google's advertising operations?",
+            "responses": [
+                revcost
+            ],
+
+        },
+
+    ];
+
+    d3.select("body").selectAll("ul")
+        .data(questions)
+        .enter().append("ul")
+        .text(function(d) { return d.prompt })
+        .selectAll("li")
+        .data(function(d) { return d.responses; })
+        .enter().append("li")
+        .text(function(d) { return d })
+        .style("background-color", function(d, i) { return i % 2 ? "#eee" : "#ddd"; });
+
+
+
+
+
+</script>
+</body>
+</html>

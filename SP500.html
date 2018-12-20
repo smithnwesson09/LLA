@@ -166,15 +166,15 @@
         </nav>
     </header>
 </div>
-
+<span id='min-time'>1970</span>
+<input type="range" name="points" min="1970" max="2018" step="1" value="2017" id="slide" style="width:900px; position: center ;">
+<span id="max-time">2018</span>
+<br>
+<br><br>
 
 <div id="chart">    </div>
 
 
-<span id='min-time'>1950</span>
-<input type="range" name="points" min="1950" max="2018" step="1" value="2017" id="slide" style="width:900px; position: center ;">
-<span id="max-time">2018</span>
-<br>
 
 <script type="text/javascript">
 
@@ -287,7 +287,7 @@
             var uniqueRegions = d3.set(tic).values();
             var regionColorMap = d3.scale.ordinal()
                 .domain(uniqueRegions)
-                .range(d3.scale.category10().range());
+                .range(d3.scale.category20c().range());
 
             // Define the div for the tooltip
             var div = d3.select('body')
@@ -299,7 +299,7 @@
             var svg = d3.select('#chart').append('svg')
                 .attr('width', totalWidth)
                 .attr('height', totalHeight)
-                .style("background", "gainsboro");
+                .style("background", "ghostwhite");
 
 
 
@@ -376,12 +376,12 @@
                     cx: xScale(d.InvestedCapital),
                     cy: yScale(d.EBITDA),
                     r: popScale(d.Assets),
-                    style: "fill:" + regionColorMap(d.Name) + ";" +
+                    style: "fill:" + regionColorMap(d.Industry) + ";" +
                         "fill-opacity:0.7;" +
-                        "stroke:" + regionColorMap(d.Ticker) + ";"
+                        "stroke:" + regionColorMap(d.Industry) + ";"
                 })
                     .on("click", function (d) {
-                        return window.open("https://finance.yahoo.com/quote/"+d.Ticker+"/key-statistics?p="+d.Ticker);
+                        return window.open("https://finance.yahoo.com/chart/"+d.Ticker+"#eyJpbnRlcnZhbCI6ImRheSIsInBlcmlvZGljaXR5IjoxLCJ0aW1lVW5pdCI6bnVsbCwiY2FuZGxlV2lkdGgiOjgsInZvbHVtZVVuZGVybGF5Ijp0cnVlLCJhZGoiOnRydWUsImNyb3NzaGFpciI6dHJ1ZSwiY2hhcnRUeXBlIjoibGluZSIsImV4dGVuZGVkIjpmYWxzZSwibWFya2V0U2Vzc2lvbnMiOnt9LCJhZ2dyZWdhdGlvblR5cGUiOiJvaGxjIiwiY2hhcnRTY2FsZSI6ImxpbmVhciIsInBhbmVscyI6eyJjaGFydCI6eyJwZXJjZW50IjoxLCJkaXNwbGF5IjoiQ1NDTyIsImNoYXJ0TmFtZSI6ImNoYXJ0IiwidG9wIjowfX0sInNldFNwYW4iOnt9LCJsaW5lV2lkdGgiOjIsInN0cmlwZWRCYWNrZ3JvdWQiOnRydWUsImV2ZW50cyI6dHJ1ZSwiY29sb3IiOiIjMDA4MWYyIiwiZXZlbnRNYXAiOnsiY29ycG9yYXRlIjp7ImRpdnMiOnRydWUsInNwbGl0cyI6dHJ1ZX0sInNpZ0RldiI6e319LCJzeW1ib2xzIjpbeyJzeW1ib2wiOiJDU0NPIiwic3ltYm9sT2JqZWN0Ijp7InN5bWJvbCI6IkNTQ08ifSwicGVyaW9kaWNpdHkiOjEsImludGVydmFsIjoiZGF5IiwidGltZVVuaXQiOm51bGwsInNldFNwYW4iOnt9fV0sInN0dWRpZXMiOnsidm9sIHVuZHIiOnsidHlwZSI6InZvbCB1bmRyIiwiaW5wdXRzIjp7ImlkIjoidm9sIHVuZHIiLCJkaXNwbGF5Ijoidm9sIHVuZHIifSwib3V0cHV0cyI6eyJVcCBWb2x1bWUiOiIjMDBiMDYxIiwiRG93biBWb2x1bWUiOiIjRkYzMzNBIn0sInBhbmVsIjoiY2hhcnQiLCJwYXJhbWV0ZXJzIjp7IndpZHRoRmFjdG9yIjowLjQ1LCJjaGFydE5hbWUiOiJjaGFydCJ9fX19");
                     })
                     .on("mouseover", function (d) {
                         div.transition()

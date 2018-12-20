@@ -499,7 +499,7 @@
 
     d3.select("button").on("click", reset);
 
-    d3.csv("fbp.csv", function(error, data) {
+    d3.csv("spp.csv", function(error, data) {
         var accessor = candlestick.accessor(),
             indicatorPreRoll = 33;  // Don't show where indicators don't have data
 
@@ -608,3 +608,4 @@
     }
 
 </script>
+</body>
